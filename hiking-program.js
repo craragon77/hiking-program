@@ -26,12 +26,12 @@ function accessingCoordinates(cleaned_location){
             }
         })
         .then(mapquestResponse => clearnCoordinates(mapquestResponse))
-        .catch(error => alert("Uh-Oh Something Went Wrong! Try Again later!"));
+        .catch(error => console.warn("Uh-Oh Something Went Wrong! Try Again later!"));
 }
 
 function clearnCoordinates(mapquestResponse){
     console.warn(mapquestResponse)
-    let latitude = mapquestResponse.response.locations.latLng[0]
-    let long = mapquestResponse.response.locations.latLng[1]
-    console.warn(latitude, long)
+    let latitude = mapquestResponse.results.locations[0].latLng.lat
+    let long = mapquestResponse.results.locations[0].latLng.lng
+    console.log(latitude, long)
 }
