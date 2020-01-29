@@ -31,7 +31,7 @@ function accessingCoordinates(cleaned_location){
 
 function clearnCoordinates(mapquestResponse){
     console.warn(mapquestResponse)
-    let latitude = mapquestResponse.message.response.locations.latLng[0]
-    let long = mapquestResponse.message.response.locations.latLng[1]
+    let latitude = mapquestResponse.response.locations.latLng[0]
+    let long = mapquestResponse.response.locations.latLng[1]
     console.warn(latitude, long)
 }
