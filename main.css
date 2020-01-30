@@ -20,6 +20,7 @@ main{
     text-align: center;
     font-family: lato;
     margin: 0;
+    bottom: 0;
 }
 h1{
     font-size: 50px;
@@ -36,7 +37,7 @@ h1{
     line-height: 20px;
 }
 input{
-    background-color: darkgrey;
+    background-color: lightgrey;
     border: solid 1px black;
 }
 .requested-number, .max-miles{
@@ -57,4 +58,10 @@ input{
     width: 150px;
     font-family: lato;
     font-size: large;
+}
+.question{
+    margin-top: 20px;
+}
+ul{
+    list-style: none;;
 }

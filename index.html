@@ -13,14 +13,22 @@
     <main>
         <section class="title"> 
         <h1>Bearfoot</h1>
-        <h2>Your guide to the backcountry</h2>
+        <h2>Your Guide to the Backcountry</h2>
         </section>
         <form class="search-form">
-            Type an address or location to see nearby hiking trails
-            <input type="text" class="starting-point" placeholder="Washington, DC" required><br>
-            I want to view <input type="number" class="requested-number" placeholder="10">trails in my area<br>
-            I want to hike no more than <input type="number" class="max-miles" placeholder="15"> miles<br>
-            <button class="submit">Explore!</button>
+            <div class="question">
+                Type an address or location to see nearby hiking trails
+                <input type="text" class="starting-point" placeholder="Washington, DC" required>
+            </div>
+            <div class="question">
+                I want to view <input type="number" class="requested-number" placeholder="10">trails in my area
+            </div>
+            <div class="question">
+                I want to hike no more than <input type="number" class="max-miles" placeholder="15"> miles
+            </div>
+            <div class="question">
+                <button class="submit">Explore!</button>
+            </div>
         </form>
         <section class="results">
             <ul class="trail-results"></ul>
