@@ -62,10 +62,11 @@ function renderTrails(hikingResponse){
                     <p>${hikingResponse.trails[i].summary}</p><br>
                     <p>${hikingResponse.trails[i].length} miles long
                         <ul>
-                            <li>${hikingResponse.trails[i].ascent}</li>
-                            <li>${hikingResponse.trails[i].descent}</li>
-                            <li>${hikingResponse.trails[i].ascent}</li>
-                            <li>${hikingResponse.trails[i].difficulty}</li>
+                            <li>${hikingResponse.trails[i].ascent} ft ascent</li>
+                            <li>${hikingResponse.trails[i].descent} ft decent</li>
+                            <li>${hikingResponse.trails[i].high} ft above sea-level at its highest</li>
+                            <li>${hikingResponse.trails[i].low} ft above sea-level at its lowest</li>
+                            <li>${hikingResponse.trails[i].difficulty} difficulty</li>
                             <li>${hikingResponse.trails[i].stars}/5 stars based on ${hikingResponse.trails[i].starVotes} reviews</li>
                         </ul>
                 </div>
