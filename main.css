@@ -1,5 +1,5 @@
 body{
-    background-image: url("mountian-top.jpg");
+    background-image: url("orange-backpack.jpg");
     background-color: darkgreen;
     background-position: center center;
     background-repeat: no-repeat;
@@ -16,8 +16,6 @@ main{
     height: 100%;
     width: 100%;
     position: absolute;
-    top: 0;
-    bottom: 0;
     color: white;
     margin-left: auto;
     margin-right: auto;
@@ -30,4 +28,31 @@ h1{
 .search-form, .results{
     line-height: 30px;
     font-size: 30px;
+}
+.search-form{
+    padding-top: 70px;
+}
+.title{
+    padding-top: 40px;
+    line-height: 20px;
+}
+input{
+    background-color: darkgrey;
+    border: solid 1px black;
+}
+.requested-number, .max-miles{
+    width: 40px;
+    margin: 10px;
+    height: 25px;
+}
+.starting-point{
+    height: 25px;
+    width: 150px;
+}
+.submit{
+    background-color: orange;
+    border: 1px solid orange;
+    border-radius: 5%;
+    height: 30px;
+    width: 150px;
 }
