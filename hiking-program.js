@@ -91,3 +91,14 @@ function hereComesTheSun(sunResponseJson){
         </div>`
     )
 }
+function weatherNearYour(latitude, longitude){
+    let darkWeatherKey = '1b800495cacdf42f4667f98deaaa24fc'
+    fetch('https://api.darksky.net/forecast/' + darkWeatherKey + '/' + latitude + ',' + longitude)
+    .then(response => {
+        if(response.ok){
+            return response.json()
+        }
+    })
+    .then(weatherResponse => console.warn(weatherResponse))
+    .catch(error => alert("The sky is falling!"))
+}
