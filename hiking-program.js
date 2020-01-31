@@ -35,7 +35,7 @@ function cleanCoordinates(mapquestResponse){
     console.log(latitude, longitude)
     accessingTrail(latitude, longitude)
     sunRiseSunSet(latitude, longitude)
-    //weatherNearYou(latitude, longitude)
+    weatherNearYou(latitude, longitude)
 }
 
 function accessingTrail(latitude, longitude, ){
@@ -94,15 +94,48 @@ function hereComesTheSun(sunResponseJson){
     )
 }
 function weatherNearYou(latitude, longitude){
-    let darkWeatherKey = '1b800495cacdf42f4667f98deaaa24fc'
-    fetch('https://api.darksky.net/forecast/' + darkWeatherKey + '/' + latitude + ',' + longitude)
+    let openWeatherKey = 'b67adfa745a7fb5ba49a440a715c89f9'
+    fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&appid=' + openWeatherKey)
     .then(response => {
         if(response.ok){
             return response.json()
         }
     })
-    .then(weatherResponse => console.warn(weatherResponse))
+    .then(weatherResponse => renderTemperature(weatherResponse))
     .catch(error => alert("The sky is falling!"))
 }
-function renderTheWeather(weatherResponse){
+function convertToFarenheight(tempKelvin){
+    let tempFar = Math.round((9 / 5) * (tempKelvin - 275) + 32)
+    return tempFar
+}
+function convertToCelcius(tempKelvin){
+    let tempCel = Math.round(tempKelvin - 273.15)
+    return tempCel
+}
+
+function renderTemperature(weatherResponse){
+    console.log(weatherResponse)
+    let currentTempFar = convertToFarenheight(weatherResponse.main.temp)
+    let feelsLikeTempFar = convertToFarenheight(weatherResponse.main.feels_like)
+    let tempMinFar = convertToFarenheight(weatherResponse.main.temp_min)
+    let tempMaxFar = convertToFarenheight(weatherResponse.main.temp_max)
+    let currentTempCel = convertToCelcius(weatherResponse.main.temp)
+    let feelsLikeTempCel = convertToCelcius(weatherResponse.main.feels_like)
+    let tempMinCel = convertToCelcius(weatherResponse.main.temp_min)
+    let tempMaxCel = convertToCelcius(weatherResponse.main.temp_max)
+    $(".weather").replaceWith(
+        `<section class="weather">
+            <div class="forecast">
+                <p>${weatherResponse.weather[0].description}</p>
+                <p>${weatherResponse.main.humidity} % humidity</p>
+                <img src="${weatherResponse.weather[0].icon}" alt="weather">
+            </div>
+            <div class="temp">
+                <p>It's currently ${currentTempFar} °F/ ${currentTempCel} °C</p>
+                <p>Feels like ${feelsLikeTempFar} °F / ${feelsLikeTempCel} °C</p>
+                <p>High of ${tempMaxFar} °F / ${tempMaxCel} °C and a low of ${tempMinFar} °F/ ${tempMinCel} °C</p>
+                <p>${weatherResponse.wind.speed} mph winds</p>
+            </div>
+        </section>`
+    )
 }
