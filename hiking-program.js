@@ -18,7 +18,7 @@ function cleaningAddress(startingPoint){
 
 function accessingCoordinates(cleaned_location){
     const mapquestKey = 'ZGADDfaBd92GKnmxjk6sAupluGqbaZgG'
-    fetch('http://www.mapquestapi.com/geocoding/v1/address?key=' + mapquestKey + '&location=' + cleaned_location)
+    fetch('https://www.mapquestapi.com/geocoding/v1/address?key=' + mapquestKey + '&location=' + cleaned_location)
         .then(response =>{
             if (response.ok){
                 return response.json()

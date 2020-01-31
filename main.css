@@ -16,12 +16,13 @@ main{
     background-color: rgba(0, 0, 0, .5);
     height: 100%;
     width: 100%;
-    position: absolute;
     color: white;
     text-align: center;
     font-family: lato;
     margin: 0;
     bottom: 0;
+    position: relative;
+    
 }
 h1{
     font-size: 50px;
