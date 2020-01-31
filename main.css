@@ -1,5 +1,5 @@
 body{
-    background-image: url("mountain-top.jpg");
+    background-image: url("mountain-man-1.jpg");
     background-color: darkgreen;
     background-position: center;
     background-repeat: no-repeat;
@@ -12,10 +12,14 @@ body{
     height: 100vh;
     z-index: -10;
 }
-main{
-    background-color: rgba(0, 0, 0, .5);
+.background{
     height: 100%;
     width: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    position: fixed;
+    z-index: -5;
+}
+main{
     color: white;
     text-align: center;
     font-family: lato;
