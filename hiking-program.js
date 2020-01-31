@@ -55,22 +55,22 @@ function renderTrails(hikingResponse){
     console.warn(hikingResponse)
     for (let i = 0; i < hikingResponse.trails.length; i++){
         $(".trail-results").append(
-            `<li>
+            `<section class="image-results">
                 <div>
-                    <img src="${hikingResponse.trails[i].imgSqSmall}" alt="pretty lil trail">
-                    <h2>${hikingResponse.trails[i].name} (${hikingResponse.trails[i].location})</h2>
+                <p class="trail-name">${hikingResponse.trails[i].name} (${hikingResponse.trails[i].location})</p><br>
+                    <img src="${hikingResponse.trails[i].imgSqSmall}" alt="image not found :(">
                     <p>${hikingResponse.trails[i].summary}</p><br>
                     <p>${hikingResponse.trails[i].length} miles long
-                        <ul>
-                            <li>${hikingResponse.trails[i].ascent} ft ascent</li>
-                            <li>${hikingResponse.trails[i].descent} ft decent</li>
-                            <li>${hikingResponse.trails[i].high} ft above sea-level at its highest</li>
-                            <li>${hikingResponse.trails[i].low} ft above sea-level at its lowest</li>
-                            <li>${hikingResponse.trails[i].difficulty} difficulty</li>
-                            <li>${hikingResponse.trails[i].stars}/5 stars based on ${hikingResponse.trails[i].starVotes} reviews</li>
-                        </ul>
+                    <ul>
+                        <li>${hikingResponse.trails[i].ascent} ft ascent</li>
+                        <li>${hikingResponse.trails[i].descent} ft decent</li>
+                        <li>${hikingResponse.trails[i].high} ft above sea-level at its highest</li>
+                        <li>${hikingResponse.trails[i].low} ft above sea-level at its lowest</li>
+                        <li>${hikingResponse.trails[i].difficulty} difficulty</li>
+                        <li>${hikingResponse.trails[i].stars}/5 stars based on ${hikingResponse.trails[i].starVotes} reviews</li>
+                    </ul>
                 </div>
-            </li>`
+            </section`
         )
     }
 }
@@ -128,7 +128,7 @@ function renderTemperature(weatherResponse){
             <div class="forecast">
                 <p>${weatherResponse.weather[0].description}</p>
                 <p>${weatherResponse.main.humidity} % humidity</p>
-                <img src="${weatherResponse.weather[0].icon}" alt="weather">
+                <img src="http://openweathermap.org/img/wn/${weatherResponse.weather[0].icon}.png" alt="weather">
             </div>
             <div class="temp">
                 <p>It's currently ${currentTempFar} °F/ ${currentTempCel} °C</p>

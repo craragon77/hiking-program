@@ -1,5 +1,5 @@
 body{
-    background-image: url("mountain-man-1.jpg");
+    background-image: url("hiking-path.jpg");
     background-color: darkgreen;
     background-position: center;
     background-repeat: no-repeat;
@@ -25,13 +25,11 @@ main{
     font-family: lato;
     margin: 0;
     bottom: 0;
-    position: relative;
-    
 }
 h1{
     font-size: 50px;
 }
-.search-form, .results{
+.search-form{
     line-height: 30px;
     font-size: 30px;
 }
@@ -70,4 +68,22 @@ input{
 }
 ul{
     list-style: none;;
+}
+.hidden{
+    display: none;
+}
+.image-result{
+    width: 100%;
+}
+.big-picture{
+    height: 100px;
+    width: 100px;
+}
+.trail-name{
+    font-size: 25px;
+}
+.results{
+    width: 100%;
+    text-align: left;
+    justify-content: column-reverse;
 }
