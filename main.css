@@ -1,5 +1,5 @@
 body{
-    background-image: url("mountain-top.jpg");
+    background-image: url("mountain-man-1.jpg");
     background-color: darkgreen;
     background-position: center;
     background-repeat: no-repeat;
@@ -32,8 +32,6 @@ h1{
 .search-form{
     line-height: 30px;
     font-size: 30px;
-}
-.search-form{
     padding-top: 70px;
 }
 .title{
@@ -52,6 +50,7 @@ input{
 .starting-point{
     height: 25px;
     width: 150px;
+    margin: 10px;
 }
 .submit{
     background-color: orange;
@@ -62,28 +61,97 @@ input{
     width: 150px;
     font-family: lato;
     font-size: large;
+    cursor:pointer;
 }
 .question{
     margin-top: 20px;
 }
 ul{
-    list-style: none;;
+    list-style: none;
 }
 .hidden{
     display: none;
 }
-.image-result{
+.image-results{
     width: 100%;
+    text-align: center;
 }
 .big-picture{
-    height: 100px;
-    width: 100px;
+    height: 500px;
+    width: 500px;
+    cursor:pointer;
 }
 .trail-name{
     font-size: 25px;
 }
-.results{
-    width: 100%;
+.searched-form{
+    line-height: 10px;
+    font-size: 15px;
+    margin: 30px;
+    padding-top: 20px;
+    justify-content: start;
+    text-align: center;
+    height: 200px;
+    margin-top: 10px;
+}
+.question-new-form{
+    width: 30px;
+    height: 10px;
+}
+.bearfoot{
+    float: left;
+    margin: 0;
+    padding-top: 50px;
+    height: 10px;
+    justify-content: start;
     text-align: left;
-    justify-content: column-reverse;
+}
+.sun-movements{
+    text-align: center;
+}
+.weather{
+    justify-content: start;
+    line-height: 10px;
+    display: block;
+    margin: 30px;
+}
+#showing-results{
+    margin: 30px;
+}
+.img-container{
+  height: 500px;
+  position: relative;
+  width: 500px;
+  align-items: center;
+}
+.img-itself{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: all 1s ease-in-out;
+}
+.img-itself:hover {
+    transform: rotateY(180deg);
+}
+.frontside{
+    backface-visibility: hidden;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+.backside {
+    backface-visibility: hidden;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    background-color: darkgreen;
+    transform: rotateY(180deg);
+    text-align: left;
+    padding-top: 30px;
+    margin-bottom: 10px;
+}
+.orangeBox{
+    border: 2px solid orange;
+    height: 300px;
 }

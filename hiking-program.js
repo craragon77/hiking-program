@@ -1,10 +1,17 @@
 function userInput(){
     $(".submit").click(function(event){
         event.preventDefault();
-        $(".trail-results").empty()
         let startingPoint = $(".starting-point").val()
+        $(".weather").empty()
+        $("ul").empty()
+        $("#showing-results").remove()
         console.log(startingPoint)
         cleaningAddress(startingPoint)
+        $(".results").prepend(
+            `<h2 id="showing-results">Showing Results in ${startingPoint}</h2>`
+        )
+        $("form").removeClass("search-form").addClass("searched-form").addClass("orangeBox")
+        $("input").removeClass(".question").addClass(".question-new-form")
     })
 }
 userInput()
@@ -54,21 +61,28 @@ function accessingTrail(latitude, longitude, ){
 function renderTrails(hikingResponse){
     console.warn(hikingResponse)
     for (let i = 0; i < hikingResponse.trails.length; i++){
+        let trailPicture = $("hikingResponse.trails[i].imgMedium") === "" ? "hiking-path.jpg" : hikingResponse.trails[i].imgMedium
         $(".trail-results").append(
             `<section class="image-results">
-                <div>
-                <p class="trail-name">${hikingResponse.trails[i].name} (${hikingResponse.trails[i].location})</p><br>
-                    <img src="${hikingResponse.trails[i].imgSqSmall}" alt="image not found :(">
-                    <p>${hikingResponse.trails[i].summary}</p><br>
+                    <p class="trail-name">${hikingResponse.trails[i].name} (${hikingResponse.trails[i].location})</p>
                     <p>${hikingResponse.trails[i].length} miles long
-                    <ul>
-                        <li>${hikingResponse.trails[i].ascent} ft ascent</li>
-                        <li>${hikingResponse.trails[i].descent} ft decent</li>
-                        <li>${hikingResponse.trails[i].high} ft above sea-level at its highest</li>
-                        <li>${hikingResponse.trails[i].low} ft above sea-level at its lowest</li>
-                        <li>${hikingResponse.trails[i].difficulty} difficulty</li>
-                        <li>${hikingResponse.trails[i].stars}/5 stars based on ${hikingResponse.trails[i].starVotes} reviews</li>
-                    </ul>
+                <div class="img-container">
+                    <div class="img-itself">
+                        <div class="frontside">
+                            <img class="big-picture" src="${trailPicture}" alt="image not found :(">
+                        </div>
+                        <div class="backside">
+                            <ul>
+                                <li>${hikingResponse.trails[i].summary}</li><br>
+                                <li>${hikingResponse.trails[i].difficulty} difficulty</li><br>
+                                <li>${hikingResponse.trails[i].stars}/5 stars based on ${hikingResponse.trails[i].starVotes} reviews</li><br>
+                                <li>${hikingResponse.trails[i].ascent} ft ascent</li><br>
+                                <li>${hikingResponse.trails[i].descent} ft decent</li><br>
+                                <li>${hikingResponse.trails[i].high} ft above sea-level at its highest</li><br>
+                                <li>${hikingResponse.trails[i].low} ft above sea-level at its lowest</li><br>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </section`
         )
@@ -87,8 +101,8 @@ function sunRiseSunSet(latitude, longitude){
 }
 function hereComesTheSun(sunResponseJson){
     console.log(sunResponseJson)
-    $(".trail-results").prepend(
-        `<div>
+    $(".weather").prepend(
+        `<div class="sun-movements">
             <p>The Sun will rise at ${sunResponseJson.sunrise} and set at ${sunResponseJson.sunset}
         </div>`
     )
@@ -124,11 +138,11 @@ function renderTemperature(weatherResponse){
     let tempMinCel = convertToCelcius(weatherResponse.main.temp_min)
     let tempMaxCel = convertToCelcius(weatherResponse.main.temp_max)
     $(".weather").replaceWith(
-        `<section class="weather">
+        `<section class="weather orangeBox">
             <div class="forecast">
+                <img src="http://openweathermap.org/img/wn/${weatherResponse.weather[0].icon}.png" alt="weather">
                 <p>${weatherResponse.weather[0].description}</p>
                 <p>${weatherResponse.main.humidity} % humidity</p>
-                <img src="http://openweathermap.org/img/wn/${weatherResponse.weather[0].icon}.png" alt="weather">
             </div>
             <div class="temp">
                 <p>It's currently ${currentTempFar} °F/ ${currentTempCel} °C</p>
@@ -139,3 +153,31 @@ function renderTemperature(weatherResponse){
         </section>`
     )
 }
+
+function newSearchButton(){
+    $(".submit").click(function(event){
+        $(".title").replaceWith(
+            `<section class="title"> 
+                <h2 id="bearfoot">BearFoot</h2>
+            </section>`
+        )
+        $(".search-form").replaceWith(
+            `<form class="searched-form">
+                <div class="question-new-form">
+                    Type an address, location, or zip code to see nearby hiking trails
+                    <input type="text" class="starting-point" placeholder="Washington, DC" required>
+                </div>
+                <div class="question-new-form">
+                    I want to view <input type="number" class="requested-number" placeholder="10">trails in my area
+                </div>
+                <div class="question-new-form">
+                    I want to hike no more than <input type="number" class="max-miles" placeholder="15"> miles
+                </div>
+                <div>
+                    <button class="submit">Explore!</button>
+                </div>
+                </form>`
+        )
+    })
+}
+
