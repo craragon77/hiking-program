@@ -154,8 +154,9 @@ ul:first-child{
         line-height: 30px;
         font-size: 30px;
         padding-top: 30px;
-        align-content: center;
+        border: red solid 1px;
         justify-content: center;
+        align-content: center;
     }
     #tester{
         display: flex;
@@ -165,9 +166,9 @@ ul:first-child{
     }
     .searched-form{
         margin-left: 30px;
-        align-content: flex-start;
+        
     }
     .weather{
-        align-content: flex-start;
+        padding-top: 0;
     }
 }
