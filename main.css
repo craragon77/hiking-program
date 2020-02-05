@@ -158,10 +158,10 @@ ul:first-child{
         padding-top: 70px;
     }
     #id{
+        display: flex;
         flex-direction: column;
-        width: 2fr;
     }
-    .search-form, .weather{
+    .searched-form, .weather{
         width: 1fr;
     }
 }
