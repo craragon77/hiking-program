@@ -1,5 +1,5 @@
 body{
-    background-image: url("mountain-man-1.jpg");
+    background-image: url("yosemite-valley.jpg");
     background-color: darkgreen;
     background-position: center;
     background-repeat: no-repeat;
@@ -30,9 +30,9 @@ h1{
     font-size: 50px;
 }
 .search-form{
-    line-height: 30px;
-    font-size: 30px;
-    padding-top: 70px;
+    line-height: 15px;
+    font-size: 15px;
+    padding: 30px;
 }
 .title{
     padding-top: 40px;
@@ -74,11 +74,13 @@ ul:first-child{
 }
 .image-results{
     width: 100%;
+    margin-right: auto;
+    margin-left: auto;
 }
 .big-picture{
     height: 500px;
     width: 500px;
-    cursor:pointer;
+    cursor: pointer;
 }
 .trail-name{
     font-size: 25px;
@@ -102,18 +104,20 @@ ul:first-child{
 }
 .weather{
     justify-content: start;
-    line-height: 10px;
+    line-height: 15px;
     display: block;
     margin: 30px;
+    padding-top: 30px;
 }
 #showing-results{
     margin: 30px;
 }
 .img-container{
   height: 500px;
-  position: relative;
   width: 500px;
-  justify-content: flex-end;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }
 .img-itself{
     height: 100%;
@@ -143,4 +147,21 @@ ul:first-child{
 .orangeBox{
     border: 2px solid orange;
     height: 325px;
+}
+@media screen and (min-width: 700px){
+    body{
+        background-image: url("mountain-man-1.jpg");
+    }
+    .search-form{
+        line-height: 30px;
+        font-size: 30px;
+        padding-top: 70px;
+    }
+    #id{
+        flex-direction: column;
+        width: 2fr;
+    }
+    .search-form, .weather{
+        width: 1fr;
+    }
 }

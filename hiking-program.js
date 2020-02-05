@@ -63,6 +63,8 @@ function renderTrails(hikingResponse){
     for (let i = 0; i < hikingResponse.trails.length; i++){
         let trailPicture = hikingResponse.trails[i].imgMedium === "" ? "hiking-path.jpg" : hikingResponse.trails[i].imgMedium
         let trailDetails = hikingResponse.trails[i].conditionDetails === null ? "n/a" : hikingResponse.trails[i].conditionDetails
+        let trailSummary = hikingResponse.trails[i].summary === "Needs Summary" ? "Unfortunately, there is summary available. Go see it for yourself!" : hikingResponse.trails[i].summary
+        let trailCondition = hikingResponse.trails[i].conditionStatus === "Unknown" ? "The condition status of this trail is unavailable at this time" : hikingResponse.trails[i].conditionStatus
         $(".trail-results").append(
             `<section class="image-results">
                     <p class="trail-name">${hikingResponse.trails[i].name} (${hikingResponse.trails[i].location})</p>
@@ -74,15 +76,15 @@ function renderTrails(hikingResponse){
                         </div>
                         <div class="backside">
                             <ul>
-                                <li>${hikingResponse.trails[i].summary}</li><br>
+                                <li>${trailSummary}</li><br>
                                 <li>${hikingResponse.trails[i].difficulty} difficulty (Green = easy, Blue = medium, Black = challenging)</li><br>
                                 <li>${hikingResponse.trails[i].stars}/5 stars based on ${hikingResponse.trails[i].starVotes} reviews</li><br>
                                 <li>${hikingResponse.trails[i].ascent} ft ascent</li><br>
                                 <li>${hikingResponse.trails[i].descent} ft decent</li><br>
                                 <li>${hikingResponse.trails[i].high} ft above sea-level at its highest</li><br>
                                 <li>${hikingResponse.trails[i].low} ft above sea-level at its lowest</li><br>
-                                <li>Trail Condition: ${hikingResponse.trails[i].conditionStatus} as of ${hikingResponse.trails[i].conditionDate}</li><br>
-                                <li>Trail Condition Description: ${trailDetails}</li><br>
+                                <li>Trail Condition: ${trailCondition} as of ${hikingResponse.trails[i].conditionDate}</li><br>
+                                <li>Trail Description: ${trailDetails}</li><br>
                                 <li>Learn more at: <a>${hikingResponse.trails[i].url}</a>
                             </ul>
                         </div>
