@@ -33,6 +33,7 @@ h1{
     line-height: 15px;
     font-size: 15px;
     padding: 30px;
+    text-align: center;
 }
 .title{
     padding-top: 40px;
@@ -90,7 +91,6 @@ ul:first-child{
     font-size: 15px;
     margin: 30px;
     padding-top: 10px;
-    justify-content: start;
     text-align: center;
     height: 200px;
     margin-top: 10px;
@@ -103,9 +103,7 @@ ul:first-child{
     text-align: center;
 }
 .weather{
-    justify-content: start;
     line-height: 15px;
-    display: block;
     margin: 30px;
     padding-top: 30px;
 }
@@ -155,13 +153,21 @@ ul:first-child{
     .search-form{
         line-height: 30px;
         font-size: 30px;
-        padding-top: 70px;
+        padding-top: 30px;
+        align-content: center;
+        justify-content: center;
     }
-    #id{
+    #tester{
         display: flex;
-        flex-direction: column;
     }
     .searched-form, .weather{
-        width: 1fr;
+        width: 50%;
+    }
+    .searched-form{
+        margin-left: 30px;
+        align-content: flex-start;
+    }
+    .weather{
+        align-content: flex-start;
     }
 }

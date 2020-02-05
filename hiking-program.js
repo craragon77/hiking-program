@@ -10,7 +10,7 @@ function userInput(){
         $("form").removeClass("search-form").addClass("searched-form").addClass("orangeBox")
         $("input").removeClass(".question").addClass(".question-new-form")
         $("form").prepend(
-            `<h2 id="showing-results">Showing Results in ${startingPoint}</h2>`
+            `<h2 id="showing-results">Showing Trails near ${startingPoint}</h2>`
         )
     })
 }
