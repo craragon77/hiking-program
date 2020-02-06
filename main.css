@@ -161,13 +161,10 @@ ul:first-child{
     .searched-form, .weather{
         width: 50%;
     }
-    .searched-form{
-        margin-left: 30px;
-    }
     .weather{
         padding-top: 0;
         display: inline-block;
-        align-content: flex-end;
+        justify-self: right;
     }
     .orangeBox {
         border: 2px solid orange;
@@ -175,17 +172,18 @@ ul:first-child{
         max-height: 350px;
     }
      .searched-form {
+        margin-left: 30px;
+        margin-top: 30px
         line-height: 5px;
         font-size: 15px;
-        text-align: center;
-        height: 200px;
         display: inline-block;
-        align-content: flex-start;
+        justify-self: right;
      }
     .weather {
        line-height: 15px;  
     }
     .flexDisplay{
         display: flex;
+        align-items: flex-start;
     }
 }
