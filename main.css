@@ -158,17 +158,34 @@ ul:first-child{
         justify-content: center;
         align-content: center;
     }
-    #tester{
-        display: flex;
-    }
     .searched-form, .weather{
         width: 50%;
     }
     .searched-form{
         margin-left: 30px;
-        
     }
     .weather{
         padding-top: 0;
+        display: inline-block;
+        align-content: flex-end;
+    }
+    .orangeBox {
+        border: 2px solid orange;
+        min-height: 350px;
+        max-height: 350px;
+    }
+     .searched-form {
+        line-height: 5px;
+        font-size: 15px;
+        text-align: center;
+        height: 200px;
+        display: inline-block;
+        align-content: flex-start;
+     }
+    .weather {
+       line-height: 15px;  
+    }
+    .flexDisplay{
+        display: flex;
     }
 }

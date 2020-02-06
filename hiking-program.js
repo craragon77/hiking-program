@@ -12,6 +12,7 @@ function userInput(){
         $("form").prepend(
             `<h2 id="showing-results">Showing Trails near ${startingPoint}</h2>`
         )
+        $("#testing").addClass(".flexDisplay")
     })
 }
 userInput()
