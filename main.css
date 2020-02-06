@@ -1,5 +1,5 @@
 body{
-    background-image: url("yosemite-valley.jpg");
+    background-image: url("brown-bear-and-cubs.jpg");
     background-color: darkgreen;
     background-position: center;
     background-repeat: no-repeat;
@@ -71,7 +71,7 @@ ul{
     list-style: none;
 }
 ul:first-child{
-    margin-top: 30px;
+    margin-top: 10px;
 }
 .image-results{
     width: 100%;
@@ -79,8 +79,8 @@ ul:first-child{
     margin-left: auto;
 }
 .big-picture{
-    height: 500px;
-    width: 500px;
+    height: 300px;
+    width: 300px;
     cursor: pointer;
 }
 .trail-name{
@@ -103,16 +103,15 @@ ul:first-child{
     text-align: center;
 }
 .weather{
-    line-height: 15px;
+    line-height: 20px;
     margin: 30px;
-    padding-top: 30px;
 }
 #showing-results{
     margin: 30px;
 }
 .img-container{
-  height: 500px;
-  width: 500px;
+  height: 350px;
+  width: 350px;
   position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -141,12 +140,20 @@ ul:first-child{
     background-color: darkgreen;
     transform: rotateY(180deg);
     text-align: left;
+    font-size: 12px;
+}
+li{
+    line-height: 12px
 }
 .orangeBox{
     border: 2px solid orange;
-    height: 325px;
+    height: 350px;
 }
-@media screen and (min-width: 700px){
+#weather-icon{
+    height: 75px;
+    width: 75px;
+}
+@media screen and (min-width: 750px){
     body{
         background-image: url("mountain-man-1.jpg");
     }
@@ -154,12 +161,12 @@ ul:first-child{
         line-height: 30px;
         font-size: 30px;
         padding-top: 30px;
-        border: red solid 1px;
         justify-content: center;
         align-content: center;
     }
     .searched-form, .weather{
         width: 50%;
+        height: 100%
     }
     .weather{
         padding-top: 0;
@@ -168,12 +175,11 @@ ul:first-child{
     }
     .orangeBox {
         border: 2px solid orange;
-        min-height: 350px;
-        max-height: 350px;
+        height: 375px;
     }
      .searched-form {
         margin-left: 30px;
-        margin-top: 30px
+        margin-top: 30px;
         line-height: 5px;
         font-size: 15px;
         display: inline-block;
@@ -181,9 +187,33 @@ ul:first-child{
      }
     .weather {
        line-height: 15px;  
+       margin-top: 30px;
     }
     .flexDisplay{
         display: flex;
         align-items: flex-start;
+    }
+    .results{
+        display: flex;
+    }
+    .img-container{
+        display: inline-block;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .image-results{
+        justify-content: flex-end;
+        width: 50%;
+        margin: 0;
+        display: inline-block;
+    }
+}
+
+@media screen and (min-width: 1050px){
+    body{
+        background-image: url("mountain-top.jpg");
+    }
+    .image-results{
+        width: 30%
     }
 }

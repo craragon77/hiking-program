@@ -10,9 +10,9 @@ function userInput(){
         $("form").removeClass("search-form").addClass("searched-form").addClass("orangeBox")
         $("input").removeClass(".question").addClass(".question-new-form")
         $("form").prepend(
-            `<h2 id="showing-results">Showing Trails near ${startingPoint}</h2>`
+            `<h3 id="showing-results">Showing Trails near ${startingPoint}</h3>`
         )
-        $("#testing").addClass(".flexDisplay")
+        $("#flexbox-container").addClass("flexDisplay")
     })
 }
 userInput()
@@ -108,9 +108,9 @@ function sunRiseSunSet(latitude, longitude){
 }
 function hereComesTheSun(sunResponseJson){
     console.log(sunResponseJson)
-    $(".weather").prepend(
+    $(".weather").append(
         `<div class="sun-movements">
-            <p>The Sun will rise at ${sunResponseJson.sunrise} and set at ${sunResponseJson.sunset}
+            <p>The Sun will rise at ${sunResponseJson.sunrise} and set at ${sunResponseJson.sunset}</p>
         </div>`
     )
 }
@@ -147,7 +147,7 @@ function renderTemperature(weatherResponse){
     $(".weather").replaceWith(
         `<section class="weather orangeBox">
             <div class="forecast">
-                <img src="https://openweathermap.org/img/wn/${weatherResponse.weather[0].icon}.png" alt="weather">
+                <img id="weather-icon" src="https://openweathermap.org/img/wn/${weatherResponse.weather[0].icon}.png" alt="weather">
                 <p>${weatherResponse.weather[0].description}</p>
                 <p>${weatherResponse.main.humidity} % humidity</p>
             </div>
@@ -159,32 +159,5 @@ function renderTemperature(weatherResponse){
             </div>
         </section>`
     )
-}
-
-function newSearchButton(){
-    $(".submit").click(function(event){
-        $(".title").replaceWith(
-            `<section class="title"> 
-                <h2 id="bearfoot">BearFoot</h2>
-            </section>`
-        )
-        $(".search-form").replaceWith(
-            `<form class="searched-form">
-                <div class="question-new-form">
-                    Type an address, location, or zip code to see nearby hiking trails
-                    <input type="text" class="starting-point" placeholder="Washington, DC" required>
-                </div>
-                <div class="question-new-form">
-                    I want to view <input type="number" class="requested-number" placeholder="10">trails in my area
-                </div>
-                <div class="question-new-form">
-                    I want to hike no more than <input type="number" class="max-miles" placeholder="15"> miles
-                </div>
-                <div>
-                    <button class="submit">Explore!</button>
-                </div>
-                </form>`
-        )
-    })
 }
 
