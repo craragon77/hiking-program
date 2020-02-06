@@ -20,6 +20,7 @@ body{
     z-index: -5;
 }
 main{
+    height: 100%;
     color: white;
     text-align: center;
     font-family: lato;
@@ -143,7 +144,8 @@ ul:first-child{
     font-size: 12px;
 }
 li{
-    line-height: 12px
+    line-height: 12px;
+    padding: 0;
 }
 .orangeBox{
     border: 2px solid orange;
@@ -174,8 +176,7 @@ li{
         justify-self: right;
     }
     .orangeBox {
-        border: 2px solid orange;
-        height: 375px;
+        border: none;
     }
      .searched-form {
         margin-left: 30px;
@@ -195,11 +196,13 @@ li{
     }
     .results{
         display: flex;
+        justify-content: center;
+        
     }
     .img-container{
         display: inline-block;
-        justify-content: flex-start;
-        align-items: center;
+        align-items: stretch;
+        
     }
     .image-results{
         justify-content: flex-end;
@@ -209,11 +212,14 @@ li{
     }
 }
 
-@media screen and (min-width: 1050px){
+@media screen and (min-width: 1150px){
     body{
         background-image: url("mountain-top.jpg");
     }
     .image-results{
-        width: 30%
+        width: 30%;
+    }
+    .results{
+        width: 100%;
     }
 }

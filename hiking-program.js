@@ -1,3 +1,5 @@
+
+//UserInput and cleaningAddress reformat the page and create variables for the fetch request
 function userInput(){
     $(".submit").click(function(event){
         event.preventDefault();
@@ -16,14 +18,12 @@ function userInput(){
     })
 }
 userInput()
-
 function cleaningAddress(startingPoint){
     let cleaned_location = startingPoint.split(" ").join(",")
     console.warn(cleaned_location)
     accessingCoordinates(cleaned_location)
 }
-    
-
+//accesssingCoordinates() uses the location input by the user and returns its coordinates
 function accessingCoordinates(cleaned_location){
     const mapquestKey = 'ZGADDfaBd92GKnmxjk6sAupluGqbaZgG'
     fetch('https://www.mapquestapi.com/geocoding/v1/address?key=' + mapquestKey + '&location=' + cleaned_location)
@@ -35,7 +35,7 @@ function accessingCoordinates(cleaned_location){
         .then(mapquestResponse => cleanCoordinates(mapquestResponse))
         .catch(error => console.warn("Uh-Oh Something Went Wrong! Try Again later!"));
 }
-
+//cleanCoordiantes takes the coordinates and calls the API's
 function cleanCoordinates(mapquestResponse){
     console.warn(mapquestResponse)
     let latitude = mapquestResponse.results[0].locations[0].latLng.lat
@@ -45,7 +45,7 @@ function cleanCoordinates(mapquestResponse){
     sunRiseSunSet(latitude, longitude)
     weatherNearYou(latitude, longitude)
 }
-
+//accessingTrail() and renderTrail() access the API and return the response in formatted HTML
 function accessingTrail(latitude, longitude, ){
     const hikingKey = '200675990-157903a155210b46749a394996f4474f'
     let requestedNumber = $(".requested-number").val() === "" ? 10 : $(".requested-number").val() 
@@ -95,9 +95,10 @@ function renderTrails(hikingResponse){
         )
     }
 }
+//sunRiseSunSet() and hereComesTheSun() access the API to find sunup and sundown and renders the html
 function sunRiseSunSet(latitude, longitude){
     const sunAPIKey = 'adf056764b2641d1a74b3b927c167240'
-    fetch('https://api.ipgeolocation.io/astronomy?apiKey=' + sunAPIKey + '&lat=' + latitude + '&long=' + longitude )
+    fetch('https://cors-anywhere.herokuapp.com/https://api.ipgeolocation.io/astronomy?apiKey=' + sunAPIKey + '&lat=' + latitude + '&long=' + longitude )
         .then(response =>{
             if (response.ok){
             return response.json()
@@ -109,11 +110,12 @@ function sunRiseSunSet(latitude, longitude){
 function hereComesTheSun(sunResponseJson){
     console.log(sunResponseJson)
     $(".weather").append(
-        `<div class="sun-movements">
+        `<div class="sun-info">
             <p>The Sun will rise at ${sunResponseJson.sunrise} and set at ${sunResponseJson.sunset}</p>
         </div>`
     )
 }
+//weatherNearYou() fetches the weather of the coordinates
 function weatherNearYou(latitude, longitude){
     let openWeatherKey = 'b67adfa745a7fb5ba49a440a715c89f9'
     fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&appid=' + openWeatherKey)
@@ -125,15 +127,17 @@ function weatherNearYou(latitude, longitude){
     .then(weatherResponse => renderTemperature(weatherResponse))
     .catch(error => alert("The sky is falling!"))
 }
+//convertToFarenheight() returns the weather to Farenheight from Kelvin
 function convertToFarenheight(tempKelvin){
     let tempFar = Math.round((9 / 5) * (tempKelvin - 275) + 32)
     return tempFar
 }
+//convertToCelcius() converts the weather to Celcius from Kelvin
 function convertToCelcius(tempKelvin){
     let tempCel = Math.round(tempKelvin - 273.15)
     return tempCel
 }
-
+//renderTemperatues calls th temperature conversions and renders the response as HTML
 function renderTemperature(weatherResponse){
     console.log(weatherResponse)
     let currentTempFar = convertToFarenheight(weatherResponse.main.temp)
