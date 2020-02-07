@@ -86,7 +86,7 @@ function renderTrails(hikingResponse){
                                 <li>${hikingResponse.trails[i].low} ft above sea-level at its lowest</li><br>
                                 <li>Trail Condition: ${trailCondition} as of ${hikingResponse.trails[i].conditionDate}</li><br>
                                 <li>Trail Description: ${trailDetails}</li><br>
-                                <li>Learn more at: <a>${hikingResponse.trails[i].url}</a>
+                                <li><a href="${hikingResponse.trails[i].url}" target="_blank">Find more information about the trail here!</a>
                             </ul>
                         </div>
                     </div>
