@@ -1,6 +1,5 @@
 body{
     background-image: url("brown-bear-and-cubs.jpg");
-    background-color: darkgreen;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -128,13 +127,18 @@ ul:first-child{
     transform: rotateY(180deg);
 }
 .frontside{
+    -webkit-backface-visibility: hidden;
+    visibility:visible;
     backface-visibility: hidden;
     height: 100%;
     position: absolute;
     width: 100%;
 }
 .backside {
+    -webkit-backface-visibility: hidden;
+    visibility:visible;
     backface-visibility: hidden;
+    -webkit-transform: translate3d(0,0,0);
     height: 100%;
     position: absolute;
     width: 100%;
