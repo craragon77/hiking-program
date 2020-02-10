@@ -1,10 +1,13 @@
-
+'use strict'
 //UserInput and cleaningAddress reformat the page and create variables for the fetch request
+
 function userInput(){
     $(".submit").click(function(event){
         event.preventDefault();
         let startingPoint = $(".starting-point").val()
-        $(".weather").empty()
+        cleaningAddress(startingPoint)
+        console.log(startingPoint)
+        /*$(".weather").empty()
         $("ul").empty()
         $("#showing-results").remove()
         console.log(startingPoint)
@@ -14,9 +17,11 @@ function userInput(){
         $("form").prepend(
             `<h3 id="showing-results">Showing Trails near ${startingPoint}</h3>`
         )
-        $("#flexbox-container").addClass("flexDisplay")
+        $("#flexbox-container").addClass("flexDisplay") */
     })
 }
+
+
 userInput()
 function cleaningAddress(startingPoint){
     let cleaned_location = startingPoint.split(" ").join(",")
@@ -32,9 +37,16 @@ function accessingCoordinates(cleaned_location){
                 return response.json()
             }
         })
-        .then(mapquestResponse => cleanCoordinates(mapquestResponse))
-        .catch(error => console.warn("Uh-Oh Something Went Wrong! Try Again later!"));
+        .then(mapquestResponse => {
+            if(mapquestResponse.results[0].locations[0].adminArea1 === 'US'){
+                return cleanCoordinates(mapquestResponse)
+            } else{
+                alert("Please enter an American address, city, or zip code")
+            }
+        })
+        .catch(error => alert("Uh-Oh Something Went Wrong! Try Again later!"))
 }
+
 //cleanCoordiantes takes the coordinates and calls the API's
 function cleanCoordinates(mapquestResponse){
     console.warn(mapquestResponse)
@@ -44,7 +56,21 @@ function cleanCoordinates(mapquestResponse){
     accessingTrail(latitude, longitude)
     sunRiseSunSet(latitude, longitude)
     weatherNearYou(latitude, longitude)
+    reformatHTML()
 }
+
+function reformatHTML(){
+        $(".weather").empty()
+        $("ul").empty()
+        $("#showing-results").remove()
+        $("form").removeClass("search-form").addClass("searched-form").addClass("orangeBox")
+        $("input").removeClass(".question").addClass(".question-new-form")
+        $("form").prepend(
+            `<h3 id="showing-results">Showing Trails near ${startingPoint}</h3>`
+        )
+        $("#flexbox-container").addClass("flexDisplay")
+}
+
 //accessingTrail() and renderTrail() access the API and return the response in formatted HTML
 function accessingTrail(latitude, longitude, ){
     const hikingKey = '200675990-157903a155210b46749a394996f4474f'
@@ -57,7 +83,7 @@ function accessingTrail(latitude, longitude, ){
             }
         })
         .then(hikingResponse => renderTrails(hikingResponse))
-        .catch(error => console.warn("your trail cannot be found at this time"))
+        .catch(error => alert("Your trail cannot be found at this time"))
 }
 function renderTrails(hikingResponse){
     console.warn(hikingResponse)
@@ -73,7 +99,7 @@ function renderTrails(hikingResponse){
                 <div class="img-container">
                     <div class="img-itself">
                         <div class="frontside">
-                            <img class="big-picture" src="${trailPicture}" alt="image not found :(">
+                            <img class="big-picture" src="${trailPicture}" alt="picture of ${hikingResponse.trails[i].name}">
                         </div>
                         <div class="backside">
                             <ul>
@@ -105,7 +131,7 @@ function sunRiseSunSet(latitude, longitude){
         }
     })
     .then(sunResponseJson => hereComesTheSun(sunResponseJson))
-    .catch(error => "Guess you don't have the sun? Oh well!")
+    .catch(error => alert("The sun's location cannot be found at this time."))
 }
 function hereComesTheSun(sunResponseJson){
     console.log(sunResponseJson)
@@ -125,7 +151,7 @@ function weatherNearYou(latitude, longitude){
         }
     })
     .then(weatherResponse => renderTemperature(weatherResponse))
-    .catch(error => alert("The sky is falling!"))
+    .catch(error => alert("The weather in your location cannot be found at this time"))
 }
 //convertToFarenheight() returns the weather to Farenheight from Kelvin
 function convertToFarenheight(tempKelvin){
@@ -164,4 +190,3 @@ function renderTemperature(weatherResponse){
         </section>`
     )
 }
-
