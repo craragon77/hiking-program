@@ -7,17 +7,6 @@ function userInput(){
         let startingPoint = $(".starting-point").val()
         cleaningAddress(startingPoint)
         console.log(startingPoint)
-        /*$(".weather").empty()
-        $("ul").empty()
-        $("#showing-results").remove()
-        console.log(startingPoint)
-        cleaningAddress(startingPoint)
-        $("form").removeClass("search-form").addClass("searched-form").addClass("orangeBox")
-        $("input").removeClass(".question").addClass(".question-new-form")
-        $("form").prepend(
-            `<h3 id="showing-results">Showing Trails near ${startingPoint}</h3>`
-        )
-        $("#flexbox-container").addClass("flexDisplay") */
     })
 }
 
@@ -25,7 +14,6 @@ function userInput(){
 userInput()
 function cleaningAddress(startingPoint){
     let cleaned_location = startingPoint.split(" ").join(",")
-    console.warn(cleaned_location)
     accessingCoordinates(cleaned_location)
 }
 //accesssingCoordinates() uses the location input by the user and returns its coordinates
@@ -44,7 +32,7 @@ function accessingCoordinates(cleaned_location){
                 alert("Please enter an American address, city, or zip code")
             }
         })
-        .catch(error => alert("Uh-Oh Something Went Wrong! Try Again later!"))
+        .catch(console.warn("Uh-Oh Something Went Wrong! Try Again later!"))
 }
 
 //cleanCoordiantes takes the coordinates and calls the API's
@@ -66,7 +54,7 @@ function reformatHTML(){
         $("form").removeClass("search-form").addClass("searched-form").addClass("orangeBox")
         $("input").removeClass(".question").addClass(".question-new-form")
         $("form").prepend(
-            `<h3 id="showing-results">Showing Trails near ${startingPoint}</h3>`
+            `<h3 id="showing-results">Showing Trails near you</h3>`
         )
         $("#flexbox-container").addClass("flexDisplay")
 }
