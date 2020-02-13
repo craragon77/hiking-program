@@ -1,8 +1,9 @@
 'use strict'
 //UserInput and cleaningAddress reformat the page and create variables for the fetch request
 
+
 function userInput(){
-    $(".submit").click(function(event){
+    $("form").submit(function(event){
         event.preventDefault();
         let startingPoint = $(".starting-point").val()
         cleaningAddress(startingPoint)
@@ -10,8 +11,6 @@ function userInput(){
     })
 }
 
-
-userInput()
 function cleaningAddress(startingPoint){
     let cleaned_location = startingPoint.split(" ").join(",")
     accessingCoordinates(cleaned_location)
@@ -29,10 +28,10 @@ function accessingCoordinates(cleaned_location){
             if(mapquestResponse.results[0].locations[0].adminArea1 === 'US'){
                 return cleanCoordinates(mapquestResponse)
             } else{
-                alert("Please enter an American address, city, or zip code")
+                alert("This location cannot be found. Please double check that the address, city, or zip code you have entered is valid in the United States")
             }
         })
-        .catch(console.warn("Uh-Oh Something Went Wrong! Try Again later!"))
+        .catch(error => alert("Uh-Oh Something Went Wrong! Try Again Later!"))
 }
 
 //cleanCoordiantes takes the coordinates and calls the API's
@@ -48,23 +47,20 @@ function cleanCoordinates(mapquestResponse){
 }
 
 function reformatHTML(){
-        $(".weather").empty()
-        $("ul").empty()
-        $("#showing-results").remove()
-        $("form").removeClass("search-form").addClass("searched-form").addClass("orangeBox")
-        $("input").removeClass(".question").addClass(".question-new-form")
-        $("form").prepend(
-            `<h3 id="showing-results">Showing Trails near you</h3>`
-        )
-        $("#flexbox-container").addClass("flexDisplay")
+    $(".weather").empty()
+    $("ul").empty()
+    $("#showing-results").remove()
+    $("form").removeClass("search-form").addClass("searched-form").addClass("orangeBox")
+    $("input").removeClass(".question").addClass(".question-new-form")
+    $("#flexbox-container").addClass("flexDisplay")
 }
-
 //accessingTrail() and renderTrail() access the API and return the response in formatted HTML
-function accessingTrail(latitude, longitude, ){
+function accessingTrail(latitude, longitude){
     const hikingKey = '200675990-157903a155210b46749a394996f4474f'
-    let requestedNumber = $(".requested-number").val() === "" ? 10 : $(".requested-number").val() 
-    let maxMiles = $(".max-miles").val() === ""? 15 : $(".max-miles").val()
-    fetch('https://www.hikingproject.com/data/get-trails?lat=' + latitude + '&lon=' + longitude + '&maxResults=' + requestedNumber + '&maxDistance='+ maxMiles + '&key=' + hikingKey)
+    let requestedNumber = $(".requested-number").val() === "" ? 10 : Math.abs($(".requested-number").val())
+    let minMiles = $(".min-miles").val() === "" ? 0 : Math.abs($(".min-miles").val())
+    let radius = $(".radius").val() === "" ? 0 : Math.abs($(".radius").val()) 
+    fetch('https://www.hikingproject.com/data/get-trails?lat=' + latitude + '&lon=' + longitude + '&maxResults=' + requestedNumber + '&maxDistance='+ radius + '&minLength='+ minMiles +'&key=' + hikingKey)
         .then(response =>{
             if (response.ok){
                 return response.json()
@@ -73,16 +69,30 @@ function accessingTrail(latitude, longitude, ){
         .then(hikingResponse => renderTrails(hikingResponse))
         .catch(error => alert("Your trail cannot be found at this time"))
 }
+
+function trailInstruction(hikingResponse){
+    if (hikingResponse.trails.length === 0){
+        $(".trail-results").prepend(
+            `<h3 id="instructions">No trails found. Please edit your search request and try again</h3>`
+        )
+    } else{
+    $(".trail-results").prepend(
+        `<h3 id="instructions"><span id="tap">Tap on</span><span id="hover">Hover over</span> the picture(s) to learn more about the trails near you</h3>`
+    )}
+}
+
+
 function renderTrails(hikingResponse){
     console.warn(hikingResponse)
+    trailInstruction(hikingResponse)
     for (let i = 0; i < hikingResponse.trails.length; i++){
         let trailPicture = hikingResponse.trails[i].imgMedium === "" ? "hiking-path.jpg" : hikingResponse.trails[i].imgMedium
         let trailDetails = hikingResponse.trails[i].conditionDetails === null ? "n/a" : hikingResponse.trails[i].conditionDetails
-        let trailSummary = hikingResponse.trails[i].summary === "Needs Summary" ? "Unfortunately, there is summary available. Go see it for yourself!" : hikingResponse.trails[i].summary
-        let trailCondition = hikingResponse.trails[i].conditionStatus === "Unknown" ? "The condition status of this trail is unavailable at this time" : hikingResponse.trails[i].conditionStatus
+        let trailSummary = hikingResponse.trails[i].summary === "Needs Summary" ? "Unfortunately, there is no summary available. Go see it for yourself!" : hikingResponse.trails[i].summary
+        let trailCondition = hikingResponse.trails[i].conditionStatus === "Unknown" ? "This trail's condition is unavailable at this time" : hikingResponse.trails[i].conditionStatus
         $(".trail-results").append(
             `<section class="image-results">
-                    <p class="trail-name">${hikingResponse.trails[i].name} (${hikingResponse.trails[i].location})</p>
+                    <p class="trail-name">${hikingResponse.trails[i].name}<br>(${hikingResponse.trails[i].location})</p>
                     <p>${hikingResponse.trails[i].length} miles long
                 <div class="img-container">
                     <div class="img-itself">
@@ -90,7 +100,7 @@ function renderTrails(hikingResponse){
                             <img class="big-picture" src="${trailPicture}" alt="picture of ${hikingResponse.trails[i].name}">
                         </div>
                         <div class="backside">
-                            <ul>
+                            <ul id="backside-list">
                                 <li>${trailSummary}</li><br>
                                 <li>${hikingResponse.trails[i].difficulty} difficulty (Green = easy, Blue = medium, Black = challenging)</li><br>
                                 <li>${hikingResponse.trails[i].stars}/5 stars based on ${hikingResponse.trails[i].starVotes} reviews</li><br>
@@ -178,3 +188,4 @@ function renderTemperature(weatherResponse){
         </section>`
     )
 }
+$(document).ready(userInput())

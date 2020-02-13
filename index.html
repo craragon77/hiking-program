@@ -14,22 +14,18 @@
         <div class="background"></div>
         <section class="title"> 
             <h1>BearFoot</h1>
-            <h2>Your Guide to the Backcountry</h2>
+            <h3>Your Guide to the Backcountry</h3>
         </section>
         <div id="flexbox-container">
         <form class="search-form">
             <div class="question">
-                Type an address, location, or zip code to see nearby hiking trails
-                <input type="text" class="starting-point" placeholder="Washington, DC" required>
+                Show me trails within a <input type="number" class="radius" placeholder="e.g. 20"> mile radius of <input type="text" class="starting-point" placeholder="e.g. Washington, DC" required>.
             </div>
             <div class="question">
-                I want to view <input type="number" class="requested-number" placeholder="10">trails in my area
+                I want to view <input type="number" class="requested-number" placeholder="e.g. 10">trails that are at least <input type="number" class="min-miles" placeholder="e.g. 5"> miles long.
             </div>
-            <div class="question">
-                I want to hike no more than <input type="number" class="max-miles" placeholder="15"> miles
-            </div>
-            <div class="question">
-                <button class="submit">Explore!</button>
+            <div>
+                <input type="submit" value ="Explore!" class="submit">
             </div>
         </form>
         <section class="weather">

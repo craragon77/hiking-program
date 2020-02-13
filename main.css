@@ -14,7 +14,7 @@ body{
 .background{
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .55);
     position: fixed;
     z-index: -5;
 }
@@ -31,20 +31,26 @@ h1{
 }
 .search-form{
     line-height: 15px;
-    font-size: 15px;
-    padding: 30px;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     text-align: center;
+    margin-right: auto;
+    margin-left: auto;
 }
 .title{
-    padding-top: 40px;
+    padding-top: 30px;
     line-height: 20px;
+    padding-bottom: 10px;
 }
-input{
-    background-color: lightgrey;
+.requested-number, .min-miles, .starting-point, .radius{
+    border-radius: 3px;
+    padding-left: 10px;
     border: solid 1px black;
+    font-size: 15px;
 }
-.requested-number, .max-miles{
-    width: 40px;
+.requested-number, .min-miles, .radius{
+    width: 60px;
     margin: 10px;
     height: 25px;
 }
@@ -57,18 +63,16 @@ input{
     background-color: orange;
     border: 1px solid orange;
     color: black;
-    border-radius: 5%;
-    height: 30px;
+    border-radius: 3%;
+    height: 50px;
     width: 150px;
+    margin: 40px;
     font-family: lato;
     font-size: large;
     cursor:pointer;
 }
 .question{
     margin-top: 20px;
-}
-ul{
-    list-style: none;
 }
 ul:first-child{
     margin-top: 10px;
@@ -85,6 +89,10 @@ ul:first-child{
 }
 .trail-name{
     font-size: 25px;
+    padding-left: 20%;
+    padding-right: 20%;
+    margin-right: auto;
+    margin-left: auto;
 }
 .searched-form{
     line-height: 5px;
@@ -94,6 +102,7 @@ ul:first-child{
     text-align: center;
     height: 200px;
     margin-top: 10px;
+    padding: 15px;
 }
 .question-new-form{
     width: 30px;
@@ -105,9 +114,7 @@ ul:first-child{
 .weather{
     line-height: 20px;
     margin: 30px;
-}
-#showing-results{
-    margin: 30px;
+    padding: 15px;
 }
 .img-container{
   height: 350px;
@@ -115,6 +122,9 @@ ul:first-child{
   position: relative;
   margin-left: auto;
   margin-right: auto;
+  padding: 15px;
+  display: flex;
+  align-items: center;
 }
 .img-itself{
     height: 100%;
@@ -122,6 +132,7 @@ ul:first-child{
     position: absolute;
     transform-style: preserve-3d;
     transition: all 1s ease-in-out;
+    justify-content: center;
 }
 .img-itself:hover {
     transform: rotateY(180deg);
@@ -139,13 +150,14 @@ ul:first-child{
     visibility:visible;
     backface-visibility: hidden;
     -webkit-transform: translate3d(0,0,0);
-    height: 100%;
+    height: auto;
     position: absolute;
-    width: 100%;
+    width: auto;
     background-color: darkgreen;
     transform: rotateY(180deg);
     text-align: left;
     font-size: 12px;
+
 }
 li{
     line-height: 12px;
@@ -153,29 +165,68 @@ li{
 }
 .orangeBox{
     border: 2px solid orange;
-    height: 350px;
+    height: 100%;
 }
 #weather-icon{
     height: 75px;
     width: 75px;
+    filter: brightness(1.5)
 }
 a{
     color: orange;
 }
-@media screen and (min-width: 750px){
+#hover{
+    display: none;
+}
+.results{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 0;
+    margin: 0;
+}
+.trail-results{
+    margin-left: 0;
+    padding-left: 0;
+    list-style: none;
+}
+#instructions{
+    padding-left: 20%;
+    padding-right: 20%;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+}
+#backside-list{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 5px;
+}
+@media screen and (min-width: 450px){
     body{
-        background-image: url("mountain-man-1.jpg");
+        background-image: url("mountain-man-2.jpg");
+        background-position: center;
+    }
+    input{
+        margin: 10px;
     }
     .search-form{
-        line-height: 30px;
+        line-height: 50px;
         font-size: 30px;
-        padding-top: 30px;
+        padding: 30px;
         justify-content: center;
         align-content: center;
     }
+    .submit{
+        font-size: 30px;
+        height: 50px;
+        width: 150px;
+        margin-top: 30px;
+    }
     .searched-form, .weather{
         width: 50%;
-        height: 100%
+        height: 100%;
+        font-size: 20px;
     }
     .weather{
         padding-top: 0;
@@ -188,13 +239,13 @@ a{
      .searched-form {
         margin-left: 30px;
         margin-top: 30px;
-        line-height: 5px;
-        font-size: 15px;
+        line-height: 30px;
         display: inline-block;
         justify-self: right;
      }
     .weather {
-       line-height: 15px;  
+       line-height: 20px;
+       line-height: 25px;  
        margin-top: 30px;
     }
     .flexDisplay{
@@ -209,24 +260,82 @@ a{
     .img-container{
         display: inline-block;
         align-items: stretch;
-        
+        margin-right: auto;
+        margin-left: auto;
     }
     .image-results{
-        justify-content: flex-end;
-        width: 50%;
+        justify-content: center;
+        width: auto;
         margin: 0;
         display: inline-block;
     }
+    .trail-name{
+        font-size: 20px;
+        display: block;
+    }
+    .requested-number, .min-miles, .radius{
+        width: 100px;
+        margin: 10px;
+        height: 50px;
+    }
+    .starting-point{
+        width: 250px;
+        height: 50px;
+    }
+    .requested-number, .min-miles, .radius, .starting-point{
+        font-size: 25px;
+    }
+    .quesiton{
+        margin-top: 50px;
+    }
+    #instructions{
+        font-size: 25px;
+    }
 }
-
-@media screen and (min-width: 1150px){
+@media screen and (min-width: 1100px){
     body{
         background-image: url("mountain-top.jpg");
     }
     .image-results{
         width: 30%;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    .img-container{
+        justify-content: center;
+        display: flex;
+    }
+    .img-itself{
+        align-items: center;
     }
     .results{
         width: 100%;
+    }
+    #tap{
+        display: none;
+    }
+    #hover{
+        display: inline;
+    }
+    #instructions{
+        font-size: 40px;
+    }
+    .requested-number, .min-miles, .radius{
+        height: 50px;
+    }
+    .starting-point{
+        height: 40px;
+    }
+    .requested-number, .min-miles, .radius, .starting-point{
+        font-size: 20px;
+    }
+    .submit{
+        font-size: 20px;
+    }
+    #backside-width{
+        width: 70%;
+    }
+    .trail-results{
+        justify-content: flex-start;
     }
 }
