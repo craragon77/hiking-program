@@ -7,7 +7,6 @@ function userInput(){
         event.preventDefault();
         let startingPoint = $(".starting-point").val()
         cleaningAddress(startingPoint)
-        console.log(startingPoint)
     })
 }
 
@@ -36,10 +35,8 @@ function accessingCoordinates(cleaned_location){
 
 //cleanCoordiantes takes the coordinates and calls the API's
 function cleanCoordinates(mapquestResponse){
-    console.warn(mapquestResponse)
     let latitude = mapquestResponse.results[0].locations[0].latLng.lat
     let longitude = mapquestResponse.results[0].locations[0].latLng.lng
-    console.log(latitude, longitude)
     accessingTrail(latitude, longitude)
     sunRiseSunSet(latitude, longitude)
     weatherNearYou(latitude, longitude)
@@ -69,7 +66,7 @@ function accessingTrail(latitude, longitude){
         .then(hikingResponse => renderTrails(hikingResponse))
         .catch(error => alert("Your trail cannot be found at this time"))
 }
-
+//Renders the user instructions
 function trailInstruction(hikingResponse){
     if (hikingResponse.trails.length === 0){
         $(".trail-results").prepend(
@@ -83,7 +80,6 @@ function trailInstruction(hikingResponse){
 
 
 function renderTrails(hikingResponse){
-    console.warn(hikingResponse)
     trailInstruction(hikingResponse)
     for (let i = 0; i < hikingResponse.trails.length; i++){
         let trailPicture = hikingResponse.trails[i].imgMedium === "" ? "hiking-path.jpg" : hikingResponse.trails[i].imgMedium
@@ -132,7 +128,6 @@ function sunRiseSunSet(latitude, longitude){
     .catch(error => alert("The sun's location cannot be found at this time."))
 }
 function hereComesTheSun(sunResponseJson){
-    console.log(sunResponseJson)
     $(".weather").append(
         `<div class="sun-info">
             <p>The Sun will rise at ${sunResponseJson.sunrise} and set at ${sunResponseJson.sunset}</p>
@@ -163,7 +158,6 @@ function convertToCelcius(tempKelvin){
 }
 //renderTemperatues calls th temperature conversions and renders the response as HTML
 function renderTemperature(weatherResponse){
-    console.log(weatherResponse)
     let currentTempFar = convertToFarenheight(weatherResponse.main.temp)
     let feelsLikeTempFar = convertToFarenheight(weatherResponse.main.feels_like)
     let tempMinFar = convertToFarenheight(weatherResponse.main.temp_min)
