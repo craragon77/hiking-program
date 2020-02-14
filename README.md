@@ -9,7 +9,9 @@ Made by Chris Aragon, with special help from Jaina Morgan, Matt Condit, and Dani
 
 APIs courtesy of The Hiking Project, MapQuest API, IpGeolocation (https://ipgeolocation.io/) and the Openweather API (https://openweathermap.org/api)
 
-https://github.com/craragon77/hiking-program
+repo: https://github.com/craragon77/hiking-program
+
+live-link: https://craragon77.github.io/hiking-program/
 
 <img src="loaded-page-final.png" alt="program homepage">
 
