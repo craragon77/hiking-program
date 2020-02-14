@@ -118,23 +118,22 @@ ul:first-child{
 }
 .img-container{
   height: 350px;
-  width: 350px;
+  width: 300px;
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  padding: 15px;
   display: flex;
   align-items: center;
 }
 .img-itself{
     height: 100%;
     width: 100%;
-    position: absolute;
+    position: relative;
     transform-style: preserve-3d;
     transition: all 1s ease-in-out;
     justify-content: center;
 }
-.img-itself:hover {
+.img-itself:hover{
     transform: rotateY(180deg);
 }
 .frontside{
@@ -144,20 +143,23 @@ ul:first-child{
     height: 100%;
     position: absolute;
     width: 100%;
+    justify-content: center;
+    align-content: center;
 }
-.backside {
+.backside{
     -webkit-backface-visibility: hidden;
     visibility:visible;
     backface-visibility: hidden;
     -webkit-transform: translate3d(0,0,0);
-    height: auto;
+    height: 100%;
     position: absolute;
-    width: auto;
+    width: 100%;
     background-color: darkgreen;
     transform: rotateY(180deg);
     text-align: left;
     font-size: 12px;
-
+    justify-content: center;
+    align-content: center;
 }
 li{
     line-height: 12px;
