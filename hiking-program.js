@@ -36,9 +36,6 @@ function cleanCoordinates(mapquestResponse){
     let latitude = mapquestResponse.results[0].locations[0].latLng.lat
     let longitude = mapquestResponse.results[0].locations[0].latLng.lng
     accessingTrail(latitude, longitude);
-    sunRiseSunSet(latitude, longitude);
-    weatherNearYou(latitude, longitude);
-    reformatHTML();
 }
 
 function reformatHTML(){
@@ -49,12 +46,25 @@ function reformatHTML(){
     $("input").removeClass(".question").addClass(".question-new-form");
     $("#flexbox-container").addClass("flexDisplay");
 }
+
 //accessingTrail() and renderTrail() access the API and return the response in formatted HTML
 function accessingTrail(latitude, longitude){
     const hikingKey = '200675990-157903a155210b46749a394996f4474f'
-    let requestedNumber = $(".requested-number").val() === "" ? 10 : Math.abs($(".requested-number").val());
-    let minMiles = $(".min-miles").val() === "" ? 0 : Math.abs($(".min-miles").val());
-    let radius = $(".radius").val() === "" ? 0 : Math.abs($(".radius").val()) ;
+    let requestedNumber = $(".requested-number").val() === "" ? 10 : $(".requested-number").val();
+    let minMiles = $(".min-miles").val() === "" ? 0 : $(".min-miles").val();
+    let radius = $(".radius").val() === "" ? 0 : $(".radius").val() ;
+    if (requestedNumber < 0 ){
+        alert("Your requested trail quantity cannot be executed; Please enter a positive number")
+    } else if(requestedNumber > 500){
+        alert("Your requested trail quantity cannot be executed; Please enter a smaller number")
+    } else if(minMiles < 0){
+        alert("Your trail minimum-length request cannot be executed; Please enter a positive number")
+    } else if(radius < 0 ){
+        alert("Your distance request cannot be executed; Please enter a positive number")
+    } else if(radius > 200) {
+        alert("Your distance request cannot be executed. Please enter a smaller number")
+    }
+    else{
     fetch('https://www.hikingproject.com/data/get-trails?lat=' + latitude + '&lon=' + longitude + '&maxResults=' + requestedNumber + '&maxDistance='+ radius + '&minLength='+ minMiles +'&key=' + hikingKey)
         .then(response =>{
             if(response.ok){
@@ -62,7 +72,13 @@ function accessingTrail(latitude, longitude){
             }
         })
         .then(hikingResponse => renderTrails(hikingResponse))
+        .then(
+            sunRiseSunSet(latitude, longitude),
+            weatherNearYou(latitude, longitude),
+            reformatHTML())
+
         .catch(error => alert("Your trail cannot be found at this time"));
+    }
 }
 //Renders the user instructions
 function trailInstruction(hikingResponse){
