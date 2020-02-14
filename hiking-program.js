@@ -40,7 +40,7 @@ function cleanCoordinates(mapquestResponse){
 
 function reformatHTML(){
     $(".weather").empty();
-    $("ul").empty();
+    $(".trail-results").empty();
     $("#showing-results").remove();
     $("form").removeClass("search-form").addClass("searched-form").addClass("orangeBox");
     $("input").removeClass(".question").addClass(".question-new-form");
@@ -75,7 +75,8 @@ function accessingTrail(latitude, longitude){
         .then(
             sunRiseSunSet(latitude, longitude),
             weatherNearYou(latitude, longitude),
-            reformatHTML())
+            reformatHTML()
+            )
 
         .catch(error => alert("Your trail cannot be found at this time"));
     }

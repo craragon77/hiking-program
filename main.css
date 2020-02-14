@@ -220,7 +220,7 @@ a{
         align-content: center;
     }
     .submit{
-        font-size: 30px;
+        font-size: 25px;
         height: 50px;
         width: 150px;
         margin-top: 30px;
@@ -319,12 +319,6 @@ a{
     }
     #instructions{
         font-size: 40px;
-    }
-    .requested-number, .min-miles, .radius{
-        height: 50px;
-    }
-    .starting-point{
-        height: 40px;
     }
     .requested-number, .min-miles, .radius, .starting-point{
         font-size: 20px;
