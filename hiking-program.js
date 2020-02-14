@@ -5,7 +5,7 @@ function userInput(){
         event.preventDefault();
         let startingPoint = $(".starting-point").val();
         cleaningAddress(startingPoint);
-    })
+    });
 }
 
 function cleaningAddress(startingPoint){
@@ -23,9 +23,9 @@ function accessingCoordinates(cleaned_location){
         })
         .then(mapquestResponse =>{
             if(mapquestResponse.results[0].locations[0].adminArea1 === 'US'){
-                return cleanCoordinates(mapquestResponse)
+                return cleanCoordinates(mapquestResponse);
             }else{
-                alert("This location cannot be found. Please double check that the address, city, or zip code you have entered is valid in the United States")
+                alert("This location cannot be found. Please double check that the address, city, or zip code you have entered is valid in the United States");
             }
         })
         .catch(error => alert("Uh-Oh Something Went Wrong! Try Again Later!"));
@@ -54,15 +54,15 @@ function accessingTrail(latitude, longitude){
     let minMiles = $(".min-miles").val() === "" ? 0 : $(".min-miles").val();
     let radius = $(".radius").val() === "" ? 0 : $(".radius").val() ;
     if (requestedNumber < 0 ){
-        alert("Your requested trail quantity cannot be executed; Please enter a positive number")
+        alert("Your requested trail quantity cannot be executed; Please enter a positive number");
     } else if(requestedNumber > 500){
-        alert("Your requested trail quantity cannot be executed; Please enter a smaller number")
+        alert("Your requested trail quantity cannot be executed; Please enter a smaller number");
     } else if(minMiles < 0){
-        alert("Your trail minimum-length request cannot be executed; Please enter a positive number")
+        alert("Your trail minimum-length request cannot be executed; Please enter a positive number");
     } else if(radius < 0 ){
-        alert("Your distance request cannot be executed; Please enter a positive number")
+        alert("Your distance request cannot be executed; Please enter a positive number");
     } else if(radius > 200) {
-        alert("Your distance request cannot be executed. Please enter a smaller number")
+        alert("Your distance request cannot be executed. Please enter a smaller number");
     }
     else{
     fetch('https://www.hikingproject.com/data/get-trails?lat=' + latitude + '&lon=' + longitude + '&maxResults=' + requestedNumber + '&maxDistance='+ radius + '&minLength='+ minMiles +'&key=' + hikingKey)
@@ -77,7 +77,6 @@ function accessingTrail(latitude, longitude){
             weatherNearYou(latitude, longitude),
             reformatHTML()
             )
-
         .catch(error => alert("Your trail cannot be found at this time"));
     }
 }
@@ -85,17 +84,18 @@ function accessingTrail(latitude, longitude){
 function trailInstruction(hikingResponse){
     if(hikingResponse.trails.length === 0){
         $(".trail-results").prepend(
-            `<h3 id="instructions">No trails found. Please edit your search request and try again</h3>`
-        )
+            `<h2 id="instructions">No trails found. Please edit your search request and try again</h2>`
+        );
     }else{
         $(".trail-results").prepend(
-        `<h3 id="instructions"><span id="tap">Tap on</span><span id="hover">Hover over</span> the picture(s) to learn more about the trails near you</h3>`
-        )}
+        `<h2 id="instructions"><span id="tap">Tap on</span><span id="hover">Hover over</span> the picture(s) to learn more about the trails near you</h2>`
+        );
+    }
 }
 
 
 function renderTrails(hikingResponse){
-    trailInstruction(hikingResponse)
+    trailInstruction(hikingResponse);
     for(let i = 0; i < hikingResponse.trails.length; i++){
         let trailPicture = hikingResponse.trails[i].imgMedium === "" ? "hiking-path.jpg" : hikingResponse.trails[i].imgMedium
         let trailDetails = hikingResponse.trails[i].conditionDetails === null ? "n/a" : hikingResponse.trails[i].conditionDetails
@@ -119,7 +119,7 @@ function renderTrails(hikingResponse){
                                     <li>${hikingResponse.trails[i].descent} ft decent</li><br>
                                     <li>${hikingResponse.trails[i].high} ft above sea-level at its highest</li><br>
                                     <li>${hikingResponse.trails[i].low} ft above sea-level at its lowest</li><br>
-                                    <li>Trail Condition: ${trailCondition} as of ${hikingResponse.trails[i].conditionDate}</li><br>
+                                    <li>Trail Condition: ${trailCondition}</li><br>
                                     <li>Trail Description: ${trailDetails}</li><br>
                                     <li><a href="${hikingResponse.trails[i].url}" target="_blank">Find more information about the trail here!</a>
                                 </ul>
@@ -136,8 +136,8 @@ function sunRiseSunSet(latitude, longitude){
     fetch('https://cors-anywhere.herokuapp.com/https://api.ipgeolocation.io/astronomy?apiKey=' + sunAPIKey + '&lat=' + latitude + '&long=' + longitude )
         .then(response =>{
             if(response.ok){
-            return response.json();
-        }
+                return response.json();
+            }
         })
         .then(sunResponseJson => hereComesTheSun(sunResponseJson))
         .catch(error => alert("The sun's location cannot be found at this time."));
@@ -163,7 +163,7 @@ function weatherNearYou(latitude, longitude){
 }
 //convertToFarenheight() returns the weather to Farenheight from Kelvin
 function convertToFarenheight(tempKelvin){
-    let tempFar = Math.round((9 / 5) * (tempKelvin - 275) + 32)
+    let tempFar = Math.round((9 / 5) * (tempKelvin - 275) + 32);
     return tempFar
 }
 //convertToCelcius() converts the weather to Celcius from Kelvin
