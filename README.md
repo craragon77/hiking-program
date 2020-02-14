@@ -11,6 +11,6 @@ APIs courtesy of The Hiking Project, MapQuest API, IpGeolocation (https://ipgeol
 
 https://github.com/craragon77/hiking-program
 
-<img src="program-homepage.png" alt="program homepage">
+<img src="loaded-page-final.png" alt="program homepage">
 
-<img src="program-product.png" alt="program product">
+<img src="used-form-final.png" alt="program product">
