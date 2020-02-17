@@ -201,7 +201,7 @@ function renderTemperature(weatherResponse){
 function activateRotation(){
     $(".img-itself").click(function(event){
         $(this).toggleClass("is-flipped");
-    })
+    });
 }
 
 $(document).ready(function(){
