@@ -14,7 +14,7 @@ body{
 .background{
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, .6);
+    background-color: rgba(0, 0, 0, .65);
     position: fixed;
     z-index: -5;
 }
@@ -133,7 +133,7 @@ ul:first-child{
     transition: all 1s ease-in-out;
     justify-content: center;
 }
-.img-itself:hover{
+.is-flipped{
     transform: rotateY(180deg);
 }
 .frontside{
@@ -177,7 +177,7 @@ li{
 a{
     color: orange;
 }
-#hover{
+#click{
     display: none;
 }
 .results{
@@ -314,7 +314,7 @@ a{
     #tap{
         display: none;
     }
-    #hover{
+    #click{
         display: inline;
     }
     #instructions{

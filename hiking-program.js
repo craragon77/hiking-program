@@ -88,7 +88,7 @@ function trailInstruction(hikingResponse){
         );
     }else{
         $(".trail-results").prepend(
-        `<h2 id="instructions"><span id="tap">Tap on</span><span id="hover">Hover over</span> the picture(s) to learn more about the trails near you</h2>`
+        `<h2 id="instructions"><span id="tap">Tap on</span><span id="click">Click on</span> the picture(s) to learn more about the trails near you</h2>`
         );
     }
 }
@@ -129,6 +129,7 @@ function renderTrails(hikingResponse){
                 </section`
         );
     }
+    activateRotation();
 }
 //sunRiseSunSet() and hereComesTheSun() access the API to find sunup and sundown and renders the html
 function sunRiseSunSet(latitude, longitude){
@@ -197,4 +198,12 @@ function renderTemperature(weatherResponse){
         </section>`
     );
 }
-userInput();
+function activateRotation(){
+    $(".img-itself").click(function(event){
+        $(this).toggleClass("is-flipped");
+    })
+}
+
+$(document).ready(function(){
+    userInput()
+});
